@@ -1,0 +1,37 @@
+# Deployment da aplicação app Rotten Potatoes
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: thiagoinhesta/conversao-temperatura-desafio:v01
+        ports:
+        - containerPort: 8080
+        
+---
+
+# Service da aplicação
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  selector:
+    app: app
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30000
+  type: NodePort

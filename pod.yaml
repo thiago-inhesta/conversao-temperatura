@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apptemperatura
+spec:
+  containers:
+    - name: apptemperatura
+      image: thiagoinhesta/conversao-temperatura:latest
+      ports:
+        - containerPort: 8080
